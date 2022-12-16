@@ -19,12 +19,12 @@ int number = Convert.ToInt32(Console.ReadLine());
 if (number >= 100 && number <= 999)
 {
     int result = number % 10;
-    Console.WriteLine($"Остаток от деления числа {number} на десять равен {result}.");
+    Console.WriteLine($"Последняя цифра введенного числа {number} - это цифра {result}.");
 }
 else if (number >= -999 && number <= -100)
 {
     int result = number % 10;
-    Console.WriteLine($"Остаток от деления числа {number} на десять равен {result}.");
+    Console.WriteLine($"Последняя цифра введенного числа {number} - это цифра {result}.");
 }
 else Console.WriteLine("Это не трехзначное число.");
 
