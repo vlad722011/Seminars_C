@@ -8,8 +8,7 @@ int finiteNumber = Convert.ToInt32(Console.ReadLine());
 
 int remainderOfTheDivision = finiteNumber % 2;
 
-if (remainderOfTheDivision == 0) finiteNumber = finiteNumber;
-else finiteNumber = finiteNumber - 1;
+if (remainderOfTheDivision != 0) finiteNumber = finiteNumber-1;
 
 int initialNumber = 2;
 while(initialNumber <= finiteNumber)
