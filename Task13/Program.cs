@@ -14,13 +14,14 @@ else Console.WriteLine($"Третья цифра введенного числа
 
 int ThirdDigitOfNumber(int num)
 {
-    if (Math.Abs(number) < 100) return -1;
-    if (Math.Abs(number) >= 100 & Math.Abs(number) < 1000) return Math.Abs(number) % 10;
+    number = Math.Abs(number);
+    if (number < 100) return -1;
+    if (number >= 100 && number < 1000) return number % 10;
     else
     {
-        while (Math.Abs(number) > 999)
+        while (number > 999)
         {
-            number = Math.Abs(number) / 10;
+            number = number / 10;
         }
         int res = number % 10;
         return res;
