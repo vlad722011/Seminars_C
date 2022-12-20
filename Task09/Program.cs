@@ -6,13 +6,12 @@
 // 85 -> 8
 
 int number = new Random().Next(10, 100);
-Console.WriteLine(number);
-Console.WriteLine(MaxDigit(number));
+Console.WriteLine($"Случайное число из диапазона 10 - 99 => {number}");
+Console.WriteLine("Наибольшая цифра числа - " + MaxDigit(number));
 
 int MaxDigit(int num)
 {
     int firstDigit = number / 10;
     int secondDigit = number % 10;
-    return (firstDigit > secondDigit ? firstDigit : secondDigit);
-   
+    return (firstDigit > secondDigit ? firstDigit : secondDigit); 
 }
