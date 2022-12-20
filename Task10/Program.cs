@@ -9,10 +9,15 @@ Console.WriteLine("Введите трехзначное число:");
 int number = Convert.ToInt32(Console.ReadLine());
 
 int result = SecondDigitOfNumber(number);
+if(Math.Abs(number) > 99 && Math.Abs(number) < 1000) 
+{
 Console.WriteLine($"Вторая цифра введенного числа: - {result}");
+}
+else Console.WriteLine("Это не трехзначное число");
 
 int SecondDigitOfNumber(int num)
 {
-    int res = (number / 10) % 10;
+    num = Math.Abs(number);
+    int res = (num / 10) % 10;
     return res;
 }

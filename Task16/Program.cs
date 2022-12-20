@@ -14,6 +14,7 @@ int number2 = Convert.ToInt32(Console.ReadLine());
 string message1 = "Да";
 string message2 = "Нет";
 bool result = SquareNumber(number1, number2);
+
 Console.WriteLine(result ? message1 : message2);
 
 bool SquareNumber(int num1, int num2)
