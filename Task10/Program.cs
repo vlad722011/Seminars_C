@@ -6,13 +6,13 @@
 // 918 -> 1
 
 Console.WriteLine("Введите трехзначное число:");
-int number  = Convert.ToInt32(Console.ReadLine());
+int number = Convert.ToInt32(Console.ReadLine());
 
 int result = SecondDigitOfNumber(number);
 Console.WriteLine($"Вторая цифра введенного числа: - {result}");
 
 int SecondDigitOfNumber(int num)
 {
-    int res = (number/10)%10;
+    int res = (number / 10) % 10;
     return res;
 }
