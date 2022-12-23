@@ -19,7 +19,7 @@ void TableSquare(int num)
     int count = 1;
     while (count <= num)
     {
-        Console.WriteLine($"{count}" + "   " + Math.Pow(count, 2));
+        Console.WriteLine($"{count,4} {Math.Pow(count, 2),4}");
         count++;
     }
 }
