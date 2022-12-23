@@ -13,7 +13,7 @@ Console.Write("Y2:- ");
 int y2c = Convert.ToInt32(Console.ReadLine());
 
 double dist = SegmentLength(x1c, y1c, x2c, y2c); //расстояние между точками с высокой точностью
-double distance = Math.Round(dist, 2); //результат с точностью до 2-ух знаков после запятой
+double distance = Math.Round(dist, 2, MidpointRounding.ToZero); //результат с точностью до 2-ух знаков после запятой
 string result = $"Расстояние между точками равно: -> {distance}";
 Console.WriteLine(result);
 
