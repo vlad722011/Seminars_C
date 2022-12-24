@@ -64,6 +64,6 @@ void CheckingNumberForAPalindrome(int num)
         numberFromArray += reverceArray[reverceArray.Length - count - 1] * Math.Pow(10, count);
         count++;
     }
-    if (number == numberFromArray) Console.WriteLine($"Введенное число {number} - ПАЛИНДРОМ");
+    if (num == numberFromArray) Console.WriteLine($"Введенное число {number} - ПАЛИНДРОМ");
     else Console.WriteLine($"Введенное число {number} - НЕ ЯВЛЯЕТСЯ ПАЛИНДРОМОМ");
 }
