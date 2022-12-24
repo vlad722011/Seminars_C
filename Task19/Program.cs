@@ -36,11 +36,7 @@ else if (Math.Abs(number) > 9999 && Math.Abs(number) < 100000)
 
 void CheckingNumberForAPalindrome(int num)
 {
-    if (num < 0)
-    {
-        num = -num;
-    }
-    
+    if (num < 0)  num = -num;
     string str = num.ToString();
     int[] array = new int[str.Length];
     // получаю массив состоящий из цифр введенного числа
