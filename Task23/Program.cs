@@ -7,7 +7,7 @@ int number = Convert.ToInt32(Console.ReadLine());
 if (number <= 0) Console.WriteLine("Вы ввели не натуральное число.");
 else
 {
-    Console.WriteLine($"Таблица квадратов чисел от 1 до {number}:");
+    Console.WriteLine($"Таблица кубов чисел от 1 до {number}:");
     TableCubing(number);
 }
 
