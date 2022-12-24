@@ -17,7 +17,7 @@ void TableCubing(int num)
     int count = 1;
     while (count <= num)
     {
-        Console.WriteLine($"{count,6} {Math.Pow(count, 3),6}");
+        Console.WriteLine($"{count,6}" + "   |" + $"{Math.Pow(count, 3),6}");
         count++;
     }
 }
