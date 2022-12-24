@@ -9,17 +9,7 @@
 Console.Write("Введите пятизначное число:  ");
 int number = Convert.ToInt32(Console.ReadLine());
 
-if (number <= -100000)
-{
-    Console.WriteLine($"Вы ввели число: {number}");
-    Console.WriteLine("Это не пятизначное число.");
-}
-if (number >= -9999 && number <= 9999)
-{
-    Console.WriteLine($"Вы ввели число: {number}");
-    Console.WriteLine("Это не пятизначное число.");
-}
-if(number >= 100000)
+if ((number <= -100000) || (number >= -9999 && number <= 9999) || (number >= 100000))
 {
     Console.WriteLine($"Вы ввели число: {number}");
     Console.WriteLine("Это не пятизначное число.");
