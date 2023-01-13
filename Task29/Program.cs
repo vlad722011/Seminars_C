@@ -11,75 +11,56 @@ int x = Convert.ToInt32(Console.ReadLine());
 
 Console.WriteLine("Введите число, конец диапазона случайных чисел, которыми будет заполнен массив: ");
 int y = Convert.ToInt32(Console.ReadLine());
-
 Console.WriteLine();
-int[] array = new int[size];
-CreateArray(array, size, x, y);
 
 Console.WriteLine($"Ваш массив, состоит из {size} элементов. Заполнен случайными числами");
 Console.WriteLine($"из диапазона чисел от {x} включительно, до {y}.");
 Console.WriteLine();
 
-PrintArray(array);
-Console.WriteLine();
-Console.WriteLine();
 
-Console.WriteLine("Или вот в таком виде: ");
-PrintArrayOption2(array);
+int [] arr = CreateArray(size, x, y);
+Console.WriteLine(PrintArray(arr));
 Console.WriteLine();
 
-Console.WriteLine("Или  может вот в таком: ");
-PrintArrayOption3(array);
+// второй вариант метода для вывода результата программы в консоль.
+
+PrintArrayOption2(arr);
 Console.WriteLine();
 
+// Универсальный метод создания массива любой длины, заполняемого рандомными числами из любых
+// диапазонов чисел, выбираемых пользователем. Все операции (в том числе создание массива)
+// производятся внутри метода. Метод не void,  метод типа int [], возвращающий сам массив.
 
-// метод, заполняющий массив случайными числами из диапазона (x <= number < y).
-void CreateArray(int[] arr, int size, int x, int y)
+int[] CreateArray(int size, int x, int y)
 {
+    int[] array = new int[size];
     Random rnd = new Random();
-    for (int i = 0; i < arr.Length; i++)
+    for (int i = 0; i < size; i++)
     {
-        arr[i] = rnd.Next(x, y);
+        array[i] = rnd.Next(x, y);
     }
+    return array;
 }
 
-// метод, отвечающий за вывод полученного массива в консоль.
-void PrintArray(int[] arr)
+// метод вывода на печать в красивом виде. Метод не void, метод типа String - возвращает строку.
+
+String PrintArray(int[]array)
 {
-    for (int i = 0; i < arr.Length; i++)
-    {
-        Console.Write(arr[i] + " ");
-    }
+string s = String.Join(", ", array);
+string result = s + " -->  " + $"[{s}]";
+return result; 
 }
 
-//  вариант вывода массива в консоль через строку.
+// метод типа void. Ничего не возвращает. Печать происходит внутри метода.
+// такой же, как делали на семинаре.
 
-void PrintArrayOption2(int[] arr)
+void PrintArrayOption2(int[] array)
 {
-    String str = "";
-
-//  Для того, чтобы сделать вывод массива в консоль красивым, в теле цикла в строку через 
-//  запятую добавляю элементы массива. Чтобы после последнего элемента массива не добавлялась 
-//  запятая, последний элемент массива добавил в строку вне тела цикла. 
-  
-    for (int i = 0; i < arr.Length - 1; i++)
+    string str = "";
+    for (int i = 0; i < array.Length - 1; i++)
     {
-        str += arr [i] + ", ";
+        str += array[i] + ", ";
     }
-    str = str + arr[arr.Length-1];
-    Console.WriteLine($"[{str}]");
-}
-
-// Или еще чуть более красивый вывод. Это в качестве дополнительного "набивания руки" при 
-// работе со строками.
-
-void PrintArrayOption3(int[] arr)
-{
-    String str = "";
-    for (int i = 0; i < arr.Length - 1; i++)
-    {
-        str += arr [i] + ", ";
-    }
-    str = str + arr[arr.Length-1];
-    Console.WriteLine("{" + $"{str}" + "} " + $"--> [{str}]");
+    str += array[array.Length-1];
+    Console.WriteLine(str + " -->  " + $"[{str}]");
 }
