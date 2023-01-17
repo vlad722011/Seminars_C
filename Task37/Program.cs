@@ -5,7 +5,7 @@
 // [1, 2, 3, 4, 5] -> [5, 8, 3]
 // [6, 7, 3, 6] -> [36, 21]
 
-Console.WriteLine("Введите число, длину будущего массива: ");
+Console.WriteLine("Введите число, длину будущего входящего массива: ");
 int size = Convert.ToInt32(Console.ReadLine());
 
 Console.WriteLine("Введите число, начало диапазона случайных чисел, которыми будет заполнен массив: ");
@@ -48,25 +48,13 @@ void PrintArray(int[] arr)
 int[] MultiplicationOfAPairOfNumbers(int[] arr)
 {
     int size;
-    if (arr.Length % 2 == 0)
+    if (arr.Length % 2 == 0) size = arr.Length / 2;
+    else size = arr.Length / 2 + 1;
+    int[] newArr = new int[size];
+    for (int i = 0; i < arr.Length / 2; i++)
     {
-        size = arr.Length / 2;
-        int[] newArr = new int[size];
-        for (int i = 0; i < arr.Length / 2; i++)
-        {
-            newArr[i] = arr[i] * arr[arr.Length - 1 - i];
-        }
-        return newArr;
+        newArr[i] = arr[i] * arr[arr.Length - 1 - i];
     }
-    else
-    {
-        size = arr.Length / 2 + 1;
-        int[] newArr = new int[size];
-        for (int i = 0; i < arr.Length / 2; i++)
-        {
-            newArr[i] = arr[i] * arr[arr.Length - 1 - i];
-        }
-        newArr[size - 1] = arr[arr.Length / 2];
-        return newArr;
-    }
+    newArr[size - 1] = arr[arr.Length/2];
+    return newArr;
 }
