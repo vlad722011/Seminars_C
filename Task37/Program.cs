@@ -51,10 +51,13 @@ int[] MultiplicationOfAPairOfNumbers(int[] arr)
     if (arr.Length % 2 == 0) size = arr.Length / 2;
     else size = arr.Length / 2 + 1;
     int[] newArr = new int[size];
-    for (int i = 0; i < arr.Length / 2; i++)
+    for (int i = 0; i < size; i++)
     {
-        newArr[i] = arr[i] * arr[arr.Length - 1 - i];
+        if(i != arr.Length - 1 -i)
+        {
+            newArr[i] = arr[i] * arr[arr.Length - 1 - i];
+        }
+        else newArr[i] = arr[i];
     }
-    newArr[size - 1] = arr[arr.Length/2];
     return newArr;
 }
