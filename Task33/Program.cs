@@ -18,8 +18,8 @@ Console.Write("Входящий массив: -> ");
 PrintArray(array);
 Console.WriteLine("Введите число, которое ищете в массиве: ");
 int number = Convert.ToInt32(Console.ReadLine());
-bool numberInArray = NumberInArray(array, number);
-if (numberInArray)
+bool isExist = IsExist(array, number);
+if (isExist)
 {
     Console.Write($"Число {number} есть в массиве: -> ");
 
@@ -49,7 +49,7 @@ void PrintArray(int[] arr)
     Console.WriteLine("]");
 }
 
-bool NumberInArray(int[] arr, int num)
+bool IsExist(int[] arr, int num)
 {
     for (int i = 0; i < arr.Length; i++)
     {
