@@ -17,7 +17,8 @@ Console.Write("Входящий массив: -> ");
 PrintArray(array);
 // int [] reverseArray = ReverseArray(array);
 Console.Write("Перевернутый массив: -> ");
-ReverseArray(array);
+// ReverseArray(array);
+ReverseArrayVersion2(array);
 PrintArray(array);
 
 int[] CreateArrayRndInt(int size, int min, int max)
@@ -54,6 +55,7 @@ int [] ReverseArray(int[] arr)
 }
 */
 
+/*
 void ReverseArray(int [] arr)
 {
     for(int i = 0; i < arr.Length/2; i++)
@@ -61,5 +63,21 @@ void ReverseArray(int [] arr)
         int temp = arr [i];
         arr [i] = arr [arr.Length -1 -i];
         arr [arr.Length -1 -i] = temp;
+    }
+}
+*/
+
+void ReverseArrayVersion2(int [] arr)
+{
+    int index1 = 0;
+    int index2 = arr.Length -1;
+
+    while(index1 < index2)
+    {
+        int obj = arr [index1];
+        arr [index1] = arr [index2];
+        arr [index2] = obj;
+        index1 ++;
+        index2 --;
     }
 }
