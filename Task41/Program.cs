@@ -7,12 +7,15 @@
 Console.WriteLine("Укажите сколько следующих чисел будет участвовать в проверке условия задачи?");
 int size = Convert.ToInt32(Console.ReadLine());
 Console.WriteLine($"Введите {size} чисел(числа).");
+int [] userSeries = UserSeries(size);
 
+/*
 int[] userSeries = new int[size];
 for (int i = 0; i < size; i++)
 {
     userSeries[i] = Convert.ToInt32(Console.ReadLine());
 }
+*/
 
 int result = CountOfNumbersGreaterThanZero(userSeries);
 Console.Write($"Среди введеныx чисел  -> ");
@@ -41,4 +44,14 @@ int CountOfNumbersGreaterThanZero(int[] arr)
         if (arr[i] > 0) count += 1;
     }
     return count;
+}
+
+int[] UserSeries(int num)
+{
+    int[] userSeries = new int[num];
+    for (int i = 0; i < num; i++)
+    {
+        userSeries[i] = Convert.ToInt32(Console.ReadLine());
+    }
+    return userSeries;
 }
