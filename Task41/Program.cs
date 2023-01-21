@@ -6,7 +6,7 @@
 
 Console.WriteLine("Укажите сколько следующих чисел будет участвовать в проверке условия задачи?");
 int size = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine($"Введите {size} чисел(числа).");
+Console.WriteLine($"Введите числа:");
 int [] userSeries = UserSeries(size);
 
 /*
@@ -20,10 +20,7 @@ for (int i = 0; i < size; i++)
 int result = CountOfNumbersGreaterThanZero(userSeries);
 Console.Write($"Среди введеныx чисел  -> ");
 PrintArray(userSeries);
-Console.WriteLine($" -> {result} чисел(числа) > 0.");
-
-
-
+Console.WriteLine($" -> {result} чисел(числа,число) > 0.");
 
 void PrintArray(int[] arr)
 {
