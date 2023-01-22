@@ -9,14 +9,6 @@ int size = Convert.ToInt32(Console.ReadLine());
 Console.WriteLine($"Введите числа:");
 int [] userSeries = UserSeries(size);
 
-/*
-int[] userSeries = new int[size];
-for (int i = 0; i < size; i++)
-{
-    userSeries[i] = Convert.ToInt32(Console.ReadLine());
-}
-*/
-
 int result = CountOfNumbersGreaterThanZero(userSeries);
 Console.Write($"Среди введеныx чисел  -> ");
 PrintArray(userSeries);
