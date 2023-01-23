@@ -8,7 +8,6 @@ Console.WriteLine("Укажите сколько следующих чисел �
 int size = Convert.ToInt32(Console.ReadLine());
 Console.WriteLine($"Введите числа:");
 int [] userSeries = UserSeries(size);
-
 int result = CountOfNumbersGreaterThanZero(userSeries);
 Console.Write($"Среди введеныx чисел  -> ");
 PrintArray(userSeries);

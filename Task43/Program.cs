@@ -17,11 +17,14 @@ double k1 = (double) Convert.ToInt32(Console.ReadLine());
 Console.WriteLine("Введите значение коэффициента k2.");
 double k2 = (double) Convert.ToInt32(Console.ReadLine());
 
+if(k1==k2) Console.WriteLine("Прямые параллельны. Они не пересекаются.");
+else
+{
 Console.WriteLine("Две прямые, заданные уравнениями:-> y = k1 * x + b1 и y = k2 * x + b2, пересекаются в точке с координатами: ");
-
-
 double [] pointСoordinates = PointCoordinates(b1, b2, k1, k2);
 PrintCoordinates(pointСoordinates);
+}
+
 
 
 // Чтобы не запутаться самому где какие коэффициенты, и чтобы в то же время не путать параметры, 
