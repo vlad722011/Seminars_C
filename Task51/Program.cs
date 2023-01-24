@@ -1,16 +1,13 @@
-﻿// Задача 49: Задайте двумерный массив. Найдите элементы, у
-// которых оба индекса чётные, и замените эти элементы на их квадраты.
-// Например, изначально массив выглядел вот так:
+﻿// Задача 51: Задайте двумерный массив. Найдите сумму
+// элементов, находящихся на главной диагонали (с индексами
+// (0,0); (1;1) и т.д.
+// Например, задан массив:
 
-//  [ 1    4    7    2 ]
-//  [ 5    9    2    3 ]
-//  [ 8    4    2    4 ]
+//     [  1   4   7   2  ]
+//     [  5   9   2   3  ]
+//     [  8   4   2   4  ]
 
-// Новый массив будет выглядеть вот так:
-
-//  [ 1    4    49    2 ]
-//  [ 5    9     2    3 ]
-//  [ 64   4     4    4 ]
+// Сумма элементов главной диагонали: 1 + 9 + 2 = 12.
 
 Console.WriteLine("Введите число строк, будущего двумерного массива: ");
 int rows = Convert.ToInt32(Console.ReadLine());
@@ -25,14 +22,12 @@ Console.WriteLine("Введите число, конец диапазона сл
 int max = Convert.ToInt32(Console.ReadLine());
 Console.WriteLine();
 
-
 int[,] array2D = CreateMatrixRndInt(rows, columns, min, max);
 PrintMatrix(array2D);
+int sumElementsOfMainDiagonal = SumElementsOfMainDiagonal(array2D);
 Console.WriteLine();
-array2D = ChangeMatrix(array2D);
-PrintMatrix(array2D);
+Console.WriteLine($"Сумма элементов главной диагонали равна: - {sumElementsOfMainDiagonal}.");
 Console.WriteLine();
-
 
 int[,] CreateMatrixRndInt(int rows, int columns, int min, int max)
 {
@@ -46,19 +41,23 @@ int[,] CreateMatrixRndInt(int rows, int columns, int min, int max)
     return matrix;
 }
 
-int[,] ChangeMatrix(int[,] matrix)
+int SumElementsOfMainDiagonal(int[,] matrix)
 {
+    int sumElements = 0;
     for (int i = 0; i < matrix.GetLength(0); i++)
+    {
         for (int j = 0; j < matrix.GetLength(1); j++)
         {
-            if (i % 2 == 0 && j % 2 == 0) matrix[i, j] = matrix[i, j] * matrix[i, j];
+
+            if (j == i) sumElements = sumElements + matrix[i, j];
         }
-    return matrix;
+
+    }
+    return sumElements;
 }
 
 void PrintMatrix(int[,] matrix)
 {
-
     for (int i = 0; i < matrix.GetLength(0); i++)
     {
         Console.Write("[");
