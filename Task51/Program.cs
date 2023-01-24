@@ -44,14 +44,12 @@ int[,] CreateMatrixRndInt(int rows, int columns, int min, int max)
 int SumElementsOfMainDiagonal(int[,] matrix)
 {
     int sumElements = 0;
-    for (int i = 0; i < matrix.GetLength(0); i++)
+    int size;
+    if (matrix.GetLength(0) < matrix.GetLength(1)) size = matrix.GetLength(0);
+    else size = matrix.GetLength(1);
+    for (int i = 0; i < size; i++)
     {
-        for (int j = 0; j < matrix.GetLength(1); j++)
-        {
-
-            if (j == i) sumElements = sumElements + matrix[i, j];
-        }
-
+        sumElements = sumElements + matrix[i, i];
     }
     return sumElements;
 }
