@@ -16,9 +16,9 @@ Console.WriteLine("Введите номер строки.");
 int row = Convert.ToInt32(Console.ReadLine());
 Console.WriteLine("Введите номер столбца.");
 int column = Convert.ToInt32(Console.ReadLine());
-if (row < 0 || column < 0)
+if (row <= 0 || column <= 0)
 {
-    Console.WriteLine("У таблицы не может быть отрицательный номер строки или столбца.");
+    Console.WriteLine("У таблицы не может быть нулевой или отрицательный номер строки или столбца.");
     Console.WriteLine("Введите корректные данные!");
 }
 else
@@ -56,7 +56,7 @@ else
 
 int ElementValue(int[,] arr)
 {
-    int res;
+    int res = Int32.MinValue;;
     if ((row > 0 && row <= arr.GetLength(0)) && (column > 0 && column <= arr.GetLength(1)))
     {
         res = arr[(row - 1), (column - 1)];
@@ -64,7 +64,6 @@ int ElementValue(int[,] arr)
     }
     else
     {
-        res = Int32.MinValue;
         return res;
     }
 }
