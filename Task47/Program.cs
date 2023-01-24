@@ -8,16 +8,12 @@
 
 Console.WriteLine("Введите число строк, будущего двумерного массива: ");
 int rows = Convert.ToInt32(Console.ReadLine());
-
 Console.WriteLine("Введите число столбцов, будущего двумерного массива: ");
 int columns = Convert.ToInt32(Console.ReadLine());
-
 Console.WriteLine("Введите число, начало диапазона случайных чисел, которыми будет заполнен массив: ");
 int min = Convert.ToInt32(Console.ReadLine());
-
 Console.WriteLine("Введите число, конец диапазона случайных чисел, которыми будет заполнен массив: ");
 int max = Convert.ToInt32(Console.ReadLine());
-
 double[,] array2D = CreateMatrixRndDouble(rows, columns, min, max);
 Console.WriteLine("Входящий массив: -> ");
 Console.WriteLine();
@@ -41,7 +37,6 @@ double[,] CreateMatrixRndDouble(int rows, int columns, int min, int max)
 
 void PrintMatrix(double[,] matrix)
 {
-
     for (int i = 0; i < matrix.GetLength(0); i++)
     {
         Console.Write("[");

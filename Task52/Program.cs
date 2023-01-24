@@ -10,10 +10,8 @@
 
 Console.WriteLine("Введите число строк, будущего двумерного массива: ");
 int rows = Convert.ToInt32(Console.ReadLine());
-
 Console.WriteLine("Введите число столбцов, будущего двумерного массива: ");
 int columns = Convert.ToInt32(Console.ReadLine());
-
 if (rows < 0 || columns < 0)
 {
     Console.WriteLine("У таблицы не может быть отрицательное количество строк или столбцов.");
@@ -26,7 +24,6 @@ int min = Convert.ToInt32(Console.ReadLine());
 
 Console.WriteLine("Введите число, конец диапазона случайных чисел, которыми будет заполнен массив: ");
 int max = Convert.ToInt32(Console.ReadLine());
-
 int[,] array2D = CreateMatrixRndInt(rows, columns, min, max);
 Console.WriteLine();
 Console.WriteLine("Входящий массив: -> ");
@@ -70,7 +67,6 @@ double[] FindArithmeticAverageOfArrayColumns(int[,] matrix)
 
 void PrintMatrix(int[,] matrix)
 {
-
     for (int i = 0; i < matrix.GetLength(0); i++)
     {
         Console.Write("[");

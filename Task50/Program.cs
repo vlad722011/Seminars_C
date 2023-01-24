@@ -6,7 +6,6 @@
 // [ 1   4   7   2 ]
 // [ 5   9   2   3 ]
 // [ 8   4   2   4 ]
-
 // Пользователь вводит позицию элемента - > 1, 7 
 // Получает ответ -> такого элемента в массиве нет.
 // Пользователь вводит позицию элемента - > 1, 1
@@ -22,7 +21,6 @@ if (row < 0 || column < 0)
     Console.WriteLine("У таблицы не может быть отрицательный номер строки или столбца.");
     Console.WriteLine("Введите корректные данные!");
 }
-
 else
 {
     Console.WriteLine("Количество строк входящего массива будет выбрано случайно из диапазона от 1 до 10");
@@ -30,7 +28,6 @@ else
     int rows = rnd.Next(1, 11);
     Console.WriteLine("Количество столбцов входящего массива будет выбрано случайно из диапазона от 1 до 10");
     int columns = rnd.Next(1, 11);
-
     Console.WriteLine("Массив будет заполнен случайными числами из диапазона от -100 до 100");
     int min = rnd.Next(-100, 101);
     int max = rnd.Next(-100, 101);
@@ -40,7 +37,6 @@ else
         min = max;
         max = temp;
     }
-
     int[,] array2D = CreateMatrixRndInt(rows, columns, min, max);
     Console.WriteLine("Входящий массив -> ");
     PrintMatrix(array2D);
@@ -58,7 +54,6 @@ else
     }
 }
 
-
 int ElementValue(int[,] arr)
 {
     int res;
@@ -74,7 +69,6 @@ int ElementValue(int[,] arr)
     }
 }
 
-
 int[,] CreateMatrixRndInt(int rows, int columns, int min, int max)
 {
     int[,] matrix = new int[rows, columns];
@@ -89,7 +83,6 @@ int[,] CreateMatrixRndInt(int rows, int columns, int min, int max)
 
 void PrintMatrix(int[,] matrix)
 {
-
     for (int i = 0; i < matrix.GetLength(0); i++)
     {
         Console.Write("[");
