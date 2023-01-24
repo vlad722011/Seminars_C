@@ -18,13 +18,13 @@ int min = Convert.ToInt32(Console.ReadLine());
 Console.WriteLine("Введите число, конец диапазона случайных чисел, которыми будет заполнен массив: ");
 int max = Convert.ToInt32(Console.ReadLine());
 
-double[,] array2D = CreateMatrixRndInt(rows, columns, min, max);
+double[,] array2D = CreateMatrixRndDouble(rows, columns, min, max);
 Console.WriteLine("Входящий массив: -> ");
 Console.WriteLine();
 PrintMatrix(array2D);
 Console.WriteLine();
 
-double[,] CreateMatrixRndInt(int rows, int columns, int min, int max)
+double[,] CreateMatrixRndDouble(int rows, int columns, int min, int max)
 {
     double[,] matrix = new double[rows, columns];
     Random rnd = new Random();
