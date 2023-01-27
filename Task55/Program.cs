@@ -18,10 +18,10 @@ PrintMatrix(matrix);
 Console.WriteLine();
 if(rows == columns)
 {
-//int [,] replacingRowsWithColumns = ReplacingRowsWithColumns(matrix);
-//PrintMatrix(replacingRowsWithColumns);
-
-ReplacingRowsWithColumns(matrix);
+int [,] replaceRowsWithColumns = ReplaceRowsWithColumns(matrix);
+PrintMatrix(replaceRowsWithColumns);
+Console.WriteLine();
+ReplacingRowsWithColumnsVersion2(matrix);
 PrintMatrix(matrix);
 
 }
@@ -59,8 +59,8 @@ void PrintMatrix(int[,] matrix)
     }
 }
 
-/*
-int [,] ReplacingRowsWithColumns(int [,] matrix)
+
+int [,] ReplaceRowsWithColumns(int [,] matrix)
 {
     int [,] newMatrix = new int [matrix.GetLength(0), matrix.GetLength(1)];
     for(int i = 0; i < matrix.GetLength(0); i++)
@@ -72,9 +72,9 @@ int [,] ReplacingRowsWithColumns(int [,] matrix)
     }
 return newMatrix;
 }
-*/
 
-void ReplacingRowsWithColumns(int [,] matrix)
+
+void ReplacingRowsWithColumnsVersion2(int [,] matrix)
 {
     for(int i = 0; i < matrix.GetLength(0) - 1; i++)
     {
