@@ -30,12 +30,19 @@ int[,] matrix = CreateMatrixRndInt(rows, columns, min, max);
 PrintMatrix(matrix);
 Console.WriteLine();
 int[] array = Array2DToArray1D(matrix);
-//PrintArray(array);
-//Console.WriteLine();
+PrintArray(array);
+Console.WriteLine();
 Array.Sort(array);
-//PrintArray(array);
-//Console.WriteLine();
+PrintArray(array);
+Console.WriteLine();
+Console.WriteLine("Решил задачу через метод VOID. Результат вывода: - >");
+Console.WriteLine();
 Dictionary(array);
+Console.WriteLine();
+int[,] dictionary = DictionaryVersion2(array);
+Console.WriteLine("Вариант №2 решения задачи, через метод возвращающий массив. Результат вывода: - >");
+Console.WriteLine();
+PrintMatrix(dictionary);
 
 int[,] CreateMatrixRndInt(int rows, int columns, int min, int max)
 {
@@ -78,7 +85,6 @@ int[] Array2DToArray1D(int[,] arr2D)
     return arr;
 }
 
-/*
 void PrintArray(int[] arr)
 {
     Console.Write("[");
@@ -89,7 +95,6 @@ void PrintArray(int[] arr)
     }
     Console.WriteLine("]");
 }
-*/
 
 void Dictionary(int[] arr)
 {
@@ -106,5 +111,47 @@ void Dictionary(int[] arr)
         }
     }
     Console.WriteLine($"{number,3}  -> {count,3}");
-    
+
 }
+
+
+int[,] DictionaryVersion2(int[] arr)
+{
+    int count = 1;
+    int number = arr[0];
+    int countDigits = 1;
+    for (int i = 1; i < arr.Length; i++)
+    {
+        if (arr[i] == number) count++;
+        else
+        {
+            countDigits++;
+            number = arr[i];
+            count = 1;
+        }
+    }
+    int columns = 2;
+    int[,] arr2D = new int[countDigits, columns];
+    number = arr[0];
+    int quantityCounter = 1;
+    int row = 0;
+    int col = 0;
+    for (int i = 1; i < arr.Length; i++)
+        if (arr[i] == number) quantityCounter++;
+        else
+        {
+            arr2D[row, col] = number;
+            col ++;
+            arr2D[row, col] = quantityCounter;
+            row  ++;
+            number = arr[i];
+            quantityCounter = 1;
+            col = 0;
+        }
+    arr2D[countDigits - 1, 0] = number;
+    arr2D[countDigits - 1, 1] = quantityCounter;
+    return arr2D;
+}
+
+
+
