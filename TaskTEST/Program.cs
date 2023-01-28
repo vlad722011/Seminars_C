@@ -10,7 +10,7 @@ int max = Convert.ToInt32(Console.ReadLine());
 int[] array = CreateArrayRndInt(size, min, max);
 Console.Write("Входящий массив: -> ");
 PrintArray(array);
-int [] newArray = ReverseArray(array);
+int[] newArray = ReverseArray(array);
 PrintArray(newArray);
 
 int[] CreateArrayRndInt(int size, int min, int max)
@@ -35,12 +35,16 @@ void PrintArray(int[] arr)
     Console.WriteLine("]");
 }
 
-int [] ReverseArray(int [] arr)
+int[] ReverseArray(int[] arr)
+
 {
-    int [] newArr = new int [arr.Length];
-    for(int i = 0; i < arr.Length; i++)
+    int sumElem = 0;
+    int[] newArr = new int[2];
+    for (int i = 0; i < arr.Length; i++)
     {
-        newArr [i] = arr [arr.Length -1 -i];
+        sumElem += arr[i];
     }
+    newArr[0] = 1;
+    newArr[1] = sumElem;
     return newArr;
 }
