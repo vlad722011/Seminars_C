@@ -12,10 +12,10 @@ Console.WriteLine("Введите число столбцов, будущего 
 int columns = Convert.ToInt32(Console.ReadLine());
 Console.WriteLine("Введите число, глубину будущего трехмерного массива: ");
 int depths = Convert.ToInt32(Console.ReadLine());
-int min = 10;
-int max = 99;
 
-if (rows * columns * depths > 90)
+int min = 10;
+
+if ((rows * columns * depths) > 90)
 {
     Console.WriteLine("Невозможно заполнить матрицу таких размеров неповторяющимися двузначными числами.");
 }
@@ -32,6 +32,8 @@ else
 int[,,] CreateArray3D(int row, int column, int dep, int minimum)
 {
     int number = minimum;
+    int count = 0;
+
     int[,,] array3D = new int[rows, columns, dep];
     for (int i = 0; i < array3D.GetLength(0); i++)
     {
@@ -40,7 +42,10 @@ int[,,] CreateArray3D(int row, int column, int dep, int minimum)
             for (int k = 0; k < array3D.GetLength(2); k++)
             {
                 array3D[i, j, k] = number;
-                number += 1;
+                count += 1;
+                if ((rows * columns * depths) > 63) number += 1;
+                else if (count % 2 == 0) number += 1;
+                else if (count % 2 == 1) number += 2;
             }
         }
     }
@@ -59,7 +64,7 @@ void Print3DMatrix(int[,,] matrix)
                 if (j < matrix.GetLength(1) - 1)
                 {
                     Console.Write($"{matrix[i, j, k],2} ({i} {j} {k}), ");
-                } 
+                }
                 else Console.Write($"{matrix[i, j, k],2} ({i} {j} {k})  ");
             }
 
