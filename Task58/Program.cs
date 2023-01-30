@@ -104,7 +104,6 @@ int[] SplitInToRows(int[,] arr2D, int indexRow)
 int RowMultipliedByColumn(int[] arr1, int[] arr2)
 {
     int sum = 0;
-    //int [] squareRowCol = new int [arr1.Length];
     for (int i = 0; i < arr1.Length; i++)
     {
         sum += arr1[i] * arr2[i];
