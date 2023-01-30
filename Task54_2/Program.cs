@@ -1,13 +1,13 @@
 ﻿// Задача 54: Задайте двумерный массив. Напишите программу, 
-// которая переверет строки двумерного массива.
+// которая упорядочит по убыванию элементы каждой строки двумерного массива.
 // Например, задан массив:
 // [1  4  7  2]
 // [5  9  2  3]
 // [8  4  2  4]
 // В итоге получается вот такой массив:
-// [2  7  4  1]
-// [3  2  9  5]
-// [4  2  4  8]
+// [7  4  2  1]
+// [9  5  3  2]
+// [8  4  4  2]
 
 Console.WriteLine("Введите число строк, будущего двумерного массива: ");
 int rows = Convert.ToInt32(Console.ReadLine());
@@ -24,11 +24,12 @@ Console.WriteLine("Входящий массив: - > ");
 Console.WriteLine();
 PrintMatrix(matrix);
 Console.WriteLine();
-int[,] newMatrix = ExpandRowInArray(matrix);
-Console.WriteLine("Полученный массив с перевернутыми строками: - > ");
+Console.WriteLine("Полученный массив с отсортированными по убыванию строками: - > ");
 Console.WriteLine();
+int[,] newMatrix = GetMatrixWithSortRows(matrix);
 PrintMatrix(newMatrix);
 Console.WriteLine();
+
 
 int[,] CreateMatrixRndInt(int rows, int columns, int min, int max)
 {
@@ -56,17 +57,52 @@ void PrintMatrix(int[,] matrix)
     }
 }
 
-int[,] ExpandRowInArray(int[,] arr2D)
+int[] SplitInToRows(int[,] arr2D, int indexRow)
+{
+    int[] arr = new int[arr2D.GetLength(1)];
+    for (int j = 0; j < arr2D.GetLength(1); j++)
+    {
+        arr[j] = arr2D[indexRow, j];
+    }
+    return arr;
+}
+
+int[] SortArray(int[] arr)
+{
+    int count = 0;
+    int temp = 0;
+    int index = 0;
+    int maximum = Int32.MinValue;
+    while (count < arr.Length)
+    {
+        for (int i = count; i < arr.Length; i++)
+        {
+            if (arr[i] > maximum)
+            {
+                maximum = arr[i];
+                index = i;
+            }
+        }
+        temp = arr[count];
+        arr[count] = arr[index];
+        arr[index] = temp;
+        count += 1;
+        maximum = Int32.MinValue;
+    }
+    return arr;
+}
+
+int[,] GetMatrixWithSortRows(int[,] arr2D)
 {
     int[,] newArr2D = new int[arr2D.GetLength(0), arr2D.GetLength(1)];
-    int indexRow= 0;
-    while (indexRow < arr2D.GetLength(0))
+    for (int i = 0; i < newArr2D.GetLength(0); i++)
     {
         for (int j = 0; j < arr2D.GetLength(1); j++)
         {
-            newArr2D[indexRow, j] = arr2D[indexRow, arr2D.GetLength(1) -1 -j];
+            int[] arr = SplitInToRows(arr2D, i);
+            SortArray(arr);
+            newArr2D[i, j] = arr[j];
         }
-        indexRow++;
     }
     return newArr2D;
 }

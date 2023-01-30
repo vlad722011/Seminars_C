@@ -1,64 +1,33 @@
-﻿// Задача 58: Задайте две матрицы. Напишите программу, 
-// которая будет находить произведение двух матриц.
-// Например, даны 2 матрицы:
-// [2  4] | [3  4]
-// [3  2] | [3  3]
-// Результирующая матрица будет:
-// [18  20]
-// [15  18]
+﻿// Задача 54: Задайте двумерный массив. Напишите программу, 
+// которая упорядочит по убыванию элементы каждой строки двумерного массива.
+// Например, задан массив:
+// [1  4  7  2]
+// [5  9  2  3]
+// [8  4  2  4]
+// В итоге получается вот такой массив:
+// [7  4  2  1]
+// [9  5  3  2]
+// [8  4  4  2]
 
-Console.WriteLine("Введите число строк, первого входящего двумерного массива: ");
-int rows1 = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine("Введите число столбцов, первого входящего двумерного массива: ");
-int columns1 = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Введите число строк, будущего двумерного массива: ");
+int rows = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Введите число столбцов, будущего двумерного массива: ");
+int columns = Convert.ToInt32(Console.ReadLine());
 Console.WriteLine("Введите число, начало диапазона случайных чисел, которыми будет заполнен массив: ");
-int min1 = Convert.ToInt32(Console.ReadLine());
+int min = Convert.ToInt32(Console.ReadLine());
 Console.WriteLine("Введите число, конец диапазона случайных чисел, которыми будет заполнен массив: ");
-int max1 = Convert.ToInt32(Console.ReadLine());
+int max = Convert.ToInt32(Console.ReadLine());
 Console.WriteLine();
 
-int[,] matrix1 = CreateMatrixRndInt(rows1, columns1, min1, max1);
-Console.WriteLine("Входящий массив номер 1: - > ");
+int[,] matrix = CreateMatrixRndInt(rows, columns, min, max);
+Console.WriteLine("Входящий массив: - > ");
 Console.WriteLine();
-PrintMatrix(matrix1);
+PrintMatrix(matrix);
 Console.WriteLine();
-
-
-Console.WriteLine("Введите число строк, второго входящего двумерного массива: ");
-int rows2 = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine("Введите число столбцов, второго входящего двумерного массива: ");
-int columns2 = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine("Введите число, начало диапазона случайных чисел, которыми будет заполнен массив: ");
-int min2 = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine("Введите число, конец диапазона случайных чисел, которыми будет заполнен массив: ");
-int max2 = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Полученный массив с отсортированными по убыванию строками: - > ");
+int[,] newMatrix = GetMatrixWithSortRows(matrix);
+PrintMatrix(newMatrix);
 Console.WriteLine();
-
-int[,] matrix2 = CreateMatrixRndInt(rows2, columns2, min2, max2);
-Console.WriteLine("Входящий массив номер 2: - > ");
-Console.WriteLine();
-PrintMatrix(matrix2);
-Console.WriteLine();
-
-
-
-
-
-
-if (columns1 == rows2)
-{
-    Console.WriteLine("Входящие матрицы можно умножить.");
-    Console.WriteLine("Результат перемножения входящих матриц: - > ");
-    Console.WriteLine();
-    int[,] matrixMultiplication = MatrixMultiplication(matrix1, matrix2);
-    PrintMatrix(matrixMultiplication);
-    Console.WriteLine();
-}
-else
-{
-    Console.WriteLine("Входящие матрицы нельзя  перемножить.");
-    Console.WriteLine();
-}
 
 
 int[,] CreateMatrixRndInt(int rows, int columns, int min, int max)
@@ -80,22 +49,11 @@ void PrintMatrix(int[,] matrix)
         Console.Write("[");
         for (int j = 0; j < matrix.GetLength(1); j++)
         {
-            if (j < matrix.GetLength(1) - 1) Console.Write($"{matrix[i, j],5}, ");
-            else Console.Write($"{matrix[i, j],5}   ");
+            if (j < matrix.GetLength(1) - 1) Console.Write($"{matrix[i, j],4}, ");
+            else Console.Write($"{matrix[i, j],4}   ");
         }
         Console.WriteLine("]");
     }
-}
-
-int[] SplitInToColumns(int[,] arr2D, int indexCol)
-{
-    int[] arr = new int[arr2D.GetLength(0)];
-    for (int i = 0; i < arr2D.GetLength(0); i++)
-    {
-        arr[i] = arr2D[i, indexCol];
-    }
-    
-    return arr;
 }
 
 int[] SplitInToRows(int[,] arr2D, int indexRow)
@@ -108,33 +66,42 @@ int[] SplitInToRows(int[,] arr2D, int indexRow)
     return arr;
 }
 
-
-int RowMultipliedByColumn(int[] arr1, int[] arr2)
+int[] SortArray(int[] arr)
 {
-    int sum = 0;
-    for (int i = 0; i < arr1.Length; i++)
+    int count = 0;
+    int temp = 0;
+    int index = 0;
+    int maximum = Int32.MinValue;
+    while (count < arr.Length)
     {
-        sum += arr1[i] * arr2[i];
+        for (int i = count; i < arr.Length; i++)
+        {
+            if (arr[i] > maximum)
+            {
+                maximum = arr[i];
+                index = i;
+            }
+        }
+        temp = arr[count];
+        arr[count] = arr[index];
+        arr[index] = temp;
+        count += 1;
+        maximum = Int32.MinValue;
     }
-    return sum;
+    return arr;
 }
 
-
-
-int[,] MatrixMultiplication(int[,] arr2D1, int[,] arr2D2)
+int[,] GetMatrixWithSortRows(int[,] arr2D)
 {
-    int[,] newMatrix = new int[arr2D1.GetLength(0), arr2D2.GetLength(1)];
-
-    int indexRow = 0;
-    while (indexRow < newMatrix.GetLength(0))
+    int[,] newArr2D = new int[arr2D.GetLength(0), arr2D.GetLength(1)];
+    for (int i = 0; i < newArr2D.GetLength(0); i++)
     {
-        for (int j = 0; j < newMatrix.GetLength(1); j++)
+        for (int j = 0; j < arr2D.GetLength(1); j++)
         {
-            int[] rowMatrix1 = SplitInToRows(arr2D1, indexRow);
-            int[] colMatrix2 = SplitInToColumns(arr2D2, j);
-            newMatrix[indexRow, j] = RowMultipliedByColumn(rowMatrix1, colMatrix2);
+            int[] arr = SplitInToRows(arr2D, i);
+            SortArray(arr);
+            newArr2D[i, j] = arr[j];
         }
-        indexRow++;
     }
-    return newMatrix;
+    return newArr2D;
 }
