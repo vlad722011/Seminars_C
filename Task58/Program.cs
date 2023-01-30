@@ -33,7 +33,7 @@ Console.WriteLine("Введите число, конец диапазона сл
 int max2 = Convert.ToInt32(Console.ReadLine());
 Console.WriteLine();
 
-int[,] matrix2 = CreateMatrixRndInt(rows1, columns1, min1, max1);
+int[,] matrix2 = CreateMatrixRndInt(rows2, columns2, min2, max2);
 Console.WriteLine("Входящий массив номер 2: - > ");
 Console.WriteLine();
 PrintMatrix(matrix2);

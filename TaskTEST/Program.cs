@@ -1,80 +1,74 @@
-﻿// Задача 62. Напишите программу, которая заполнит спирально массив 4 на 4.
-// Например, на выходе получается вот такой массив:
-// [ 01  02  03  04 ]
-// [ 12  13  14  05 ]
-// [ 11  16  15  06 ]
-// [ 10  09  08  07 ]
+﻿// Задача 58: Задайте две матрицы. Напишите программу, 
+// которая будет находить произведение двух матриц.
+// Например, даны 2 матрицы:
+// [2  4] | [3  4]
+// [3  2] | [3  3]
+// Результирующая матрица будет:
+// [18  20]
+// [15  18]
 
-int number = 1; //стартовое значение первого элемента матрицы
-int width = 8; // ширина рисуемого прямоугольника
-int height = 8; // высота рисуемого квадрата
-int rows = 10; // количество строк исходной матрицы
-int columns = 10; // количество столбцов исходной матрицы
-int rowFirst = 1;  // индекс строки стартового элемента
-int colFirst = 1; //индекс столбца стартогвого элемента
-
-
-int counter = Counter(width, height);
-int[,] matrix = new int[rows, columns];
-int[] arrStart = new int[5] { number, width, height, rowFirst, colFirst };
-
-for (int i = 0; i < counter; i++)
-{
-    matrix = DrawSquare(arrStart, matrix);
-    arrStart = TempArray(arrStart);   
-}
-
-Console.WriteLine("Заполненная матрица: -> ");
+Console.WriteLine("Введите число строк, первого входящего двумерного массива: ");
+int rows1 = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Введите число столбцов, первого входящего двумерного массива: ");
+int columns1 = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Введите число, начало диапазона случайных чисел, которыми будет заполнен массив: ");
+int min1 = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Введите число, конец диапазона случайных чисел, которыми будет заполнен массив: ");
+int max1 = Convert.ToInt32(Console.ReadLine());
 Console.WriteLine();
-PrintMatrix(matrix);
+
+int[,] matrix1 = CreateMatrixRndInt(rows1, columns1, min1, max1);
+Console.WriteLine("Входящий массив номер 1: - > ");
+Console.WriteLine();
+PrintMatrix(matrix1);
 Console.WriteLine();
 
 
-int[] TempArray(int[] arr)
+Console.WriteLine("Введите число строк, второго входящего двумерного массива: ");
+int rows2 = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Введите число столбцов, второго входящего двумерного массива: ");
+int columns2 = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Введите число, начало диапазона случайных чисел, которыми будет заполнен массив: ");
+int min2 = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Введите число, конец диапазона случайных чисел, которыми будет заполнен массив: ");
+int max2 = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine();
+
+int[,] matrix2 = CreateMatrixRndInt(rows2, columns2, min2, max2);
+Console.WriteLine("Входящий массив номер 2: - > ");
+Console.WriteLine();
+PrintMatrix(matrix2);
+Console.WriteLine();
+
+
+
+
+
+
+if (columns1 == rows2)
 {
-    number = number + (2 * width) + (2 * (height - 2));
-    width = width - 2;
-    height = height - 2;
-    colFirst += 1;
-    rowFirst += 1;
-    arr = new int[5] { number, width, height, rowFirst, colFirst };
-    return arr;
+    Console.WriteLine("Входящие матрицы можно умножить.");
+    Console.WriteLine("Результат перемножения входящих матриц: - > ");
+    Console.WriteLine();
+    int[,] matrixMultiplication = MatrixMultiplication(matrix1, matrix2);
+    PrintMatrix(matrixMultiplication);
+    Console.WriteLine();
+}
+else
+{
+    Console.WriteLine("Входящие матрицы нельзя  перемножить.");
+    Console.WriteLine();
 }
 
-int[,] DrawSquare(int[] arr, int[,] matrix)
-{
-    
-    int num = arr[0];
-    int indexRow = arr[3];
-    int indexCol = arr[4];
-    // рисуем верх квадрата
-    for (int j = indexCol; j < (indexCol + arr[1]); j++)
-    {
-        matrix[indexRow, j] = num;
-        num += 1;
-    }
-    // рисуем правый край квадрата
-    indexCol = arr[4] + arr[1] - 1;
-    for (indexRow = arr[3] + 1; indexRow < arr[3] + arr[2] - 1; indexRow++)
-    {
-        matrix[indexRow, indexCol] = num;
-        num += 1;
-    }
-    // рисуем низ квадрата
-    indexCol = arr[4] + arr[1] - 1;
-    indexRow = arr[3] + arr[2] - 1;
-    for (int k = indexCol; k >= arr[4]; k--)
-    {
-        matrix[indexRow, k] = num;
-        num += 1;
-    }
-    // рисуем левый край квадрата
 
-    indexCol = arr[4];
-    for (indexRow = arr[3] + arr[2] - 2; indexRow > arr[3]; indexRow--)
+int[,] CreateMatrixRndInt(int rows, int columns, int min, int max)
+{
+    int[,] matrix = new int[rows, columns];
+    Random rnd = new Random();
+    for (int i = 0; i < matrix.GetLength(0); i++)
     {
-        matrix[indexRow, indexCol] = num;
-        num += 1;
+        for (int j = 0; j < matrix.GetLength(1); j++)
+            matrix[i, j] = rnd.Next(min, max + 1);
     }
     return matrix;
 }
@@ -86,23 +80,61 @@ void PrintMatrix(int[,] matrix)
         Console.Write("[");
         for (int j = 0; j < matrix.GetLength(1); j++)
         {
-            if (j < matrix.GetLength(1) - 1) Console.Write($"{matrix[i, j],4}, ");
-            else Console.Write($"{matrix[i, j],4}   ");
+            if (j < matrix.GetLength(1) - 1) Console.Write($"{matrix[i, j],5}, ");
+            else Console.Write($"{matrix[i, j],5}   ");
         }
         Console.WriteLine("]");
     }
 }
 
-int Counter(int width, int height)
+int[] SplitInToColumns(int[,] arr2D, int indexCol)
 {
-    int countWidth = 0;
-    if (width % 2 == 0) countWidth = width / 2;
-    else countWidth = width / 2 + 1;
-    int countHeight = 0;
-    if (width % 2 == 0) countHeight = height / 2;
-    else countHeight = height / 2 + 1;
-    int count = 0;
-    if (countHeight < countWidth) count = countHeight;
-    else count = countWidth;
-    return count;
+    int[] arr = new int[arr2D.GetLength(0)];
+    for (int i = 0; i < arr2D.GetLength(0); i++)
+    {
+        arr[i] = arr2D[i, indexCol];
+    }
+    
+    return arr;
+}
+
+int[] SplitInToRows(int[,] arr2D, int indexRow)
+{
+    int[] arr = new int[arr2D.GetLength(1)];
+    for (int j = 0; j < arr2D.GetLength(1); j++)
+    {
+        arr[j] = arr2D[indexRow, j];
+    }
+    return arr;
+}
+
+
+int RowMultipliedByColumn(int[] arr1, int[] arr2)
+{
+    int sum = 0;
+    for (int i = 0; i < arr1.Length; i++)
+    {
+        sum += arr1[i] * arr2[i];
+    }
+    return sum;
+}
+
+
+
+int[,] MatrixMultiplication(int[,] arr2D1, int[,] arr2D2)
+{
+    int[,] newMatrix = new int[arr2D1.GetLength(0), arr2D2.GetLength(1)];
+
+    int indexRow = 0;
+    while (indexRow < newMatrix.GetLength(0))
+    {
+        for (int j = 0; j < newMatrix.GetLength(1); j++)
+        {
+            int[] rowMatrix1 = SplitInToRows(arr2D1, indexRow);
+            int[] colMatrix2 = SplitInToColumns(arr2D2, j);
+            newMatrix[indexRow, j] = RowMultipliedByColumn(rowMatrix1, colMatrix2);
+        }
+        indexRow++;
+    }
+    return newMatrix;
 }
