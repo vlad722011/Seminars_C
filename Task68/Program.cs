@@ -15,8 +15,8 @@ else Console.WriteLine("Не все числа положительные. Вв�
 int Akkerman(int numM, int numN)
 {
     if (numM == 0) return numN + 1;
-    else if((numM > 0) && (numN == 0)) return Akkerman (numM -1, 1);
-    else return Akkerman (numM -1, Akkerman(numM, numN -1));
+    if ((numM > 0) && (numN == 0)) return Akkerman(numM - 1, 1);
+    return Akkerman(numM - 1, Akkerman(numM, numN - 1));
 }
 
 
